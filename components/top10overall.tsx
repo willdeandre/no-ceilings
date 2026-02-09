@@ -28,6 +28,28 @@ type Top10OverallProps = {
   className?: string;
 };
 
+function movementClass(prevRankText: string) {
+  const t = prevRankText.toLowerCase();
+
+  // stayed the same
+  if (t.includes("↔")) {
+    return "text-white/60"; // your current neutral color
+  }
+
+  // improved
+  if (t.includes("↑")) {
+    return "text-emerald-400";
+  }
+
+  // dropped
+  if (t.includes("↓")) {
+    return "text-red-400";
+  }
+
+  // fallback
+  return "text-white/60";
+}
+
 /**
  * HARD-CODED TOP 10 (as provided by you)
  * NOTE: I left href as "#" placeholders — swap these to real pages later.
@@ -255,7 +277,12 @@ export default function Top10Overall({
               </div>
 
               {/* previous ranking movement */}
-              <span className="text-[10px] font-black tracking-widest text-white/60">
+              <span
+                className={[
+                  "text-[10px] font-black tracking-widest",
+                  movementClass(p.prevRankText),
+                ].join(" ")}
+              >
                 {p.prevRankText}
               </span>
             </div>

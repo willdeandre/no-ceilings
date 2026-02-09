@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Top10Overall from "@/components/top10overall";
 import ScrollBanner from "@/components/ScrollBanner"; // <- if you made it
+import TopRisers from "@/components/topRisers";
+
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black pb-20">
       <div className="w-full px-14 py-12">
         {/* Main | Right rail */}
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_280px] gap-6">
@@ -142,9 +144,12 @@ export default function Home() {
             </section>
           </div>
 
-          {/* RIGHT: Top 10 Overall */}
+          {/* RIGHT RAIL: Top 10 + Risers */}
           <aside className="hidden lg:block sticky top-8 h-fit">
-            <Top10Overall />
+            <div className="flex flex-col gap-4">
+              <Top10Overall />
+              <TopRisers />
+            </div>
           </aside>
         </div>
       </div>

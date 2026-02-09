@@ -9,7 +9,7 @@ export default function ScrollBanner() {
     useEffect(() => {
         const handleScroll = () => {
             // show banner once user scrolls down a bit
-            setVisible(window.scrollY > 250);
+            setVisible(window.scrollY > 600);
         };
 
         window.addEventListener("scroll", handleScroll);
