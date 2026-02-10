@@ -272,7 +272,6 @@ export default function Top10Overall({
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-zinc-400 uppercase tracking-wider">
                   <span className="truncate">{p.posHeight}</span>
-                  <span className="text-white/20">•</span>
                 </div>
               </div>
 
