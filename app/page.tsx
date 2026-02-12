@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import SmartLink from "@/components/SmartLink";
 import Top10Overall from "@/components/top10overall";
 import ScrollBanner from "@/components/ScrollBanner"; // <- if you made it
 import TopRisers from "@/components/topRisers";
@@ -27,14 +27,14 @@ export default function Home() {
 
               {/* centered horizontally, low vertically */}
               <div className="absolute inset-0 flex justify-center items-end pb-10">
-                <Link
+                <SmartLink
                   href="https://www.noceilingsnba.com/p/2026-nba-draft-big-board-v4"
                   className="block w-[260px] sm:w-[320px] rounded-[1.5rem] bg-white/10 backdrop-blur-md border border-white/15 p-5 text-white shadow-2xl transition-transform hover:scale-105 hover:border-brand-orange"
                 >
                   <h1 className="text-center text-2xl font-bold leading-tight">
                     2026 Big Board: <span className="text-brand-orange">V.4</span>
                   </h1>
-                </Link>
+                </SmartLink>
               </div>
             </section>
 
@@ -44,12 +44,12 @@ export default function Home() {
                 <h2 className="text-3xl font-bold text-white italic tracking-tight">
                   RECENT ARTICLES
                 </h2>
-                <Link
+                <SmartLink
                   href="https://www.noceilingsnba.com/archive"
                   className="text-sm font-bold text-zinc-400 hover:text-brand-orange transition uppercase tracking-widest"
                 >
                   View all
-                </Link>
+                </SmartLink>
               </div>
 
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -97,7 +97,7 @@ export default function Home() {
                     authorImg: "/maxwell_baumbach.png",
                   },
                 ].map((a) => (
-                  <Link
+                  < SmartLink
                     key={a.title}
                     href={a.href}
                     className="group relative overflow-hidden rounded-[2rem] bg-zinc-900 aspect-[4/5] transition-all hover:-translate-y-2 border border-white/5 hover:border-white/15"
@@ -138,7 +138,7 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </SmartLink>
                 ))}
               </div>
             </section>

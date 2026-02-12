@@ -1,92 +1,70 @@
-// components/topRisers.tsx
+// components/topFallers.tsx
 import Image from "next/image";
 import Link from "next/link";
 
-export type RiserProspect = {
+export type FallerProspect = {
     id: string;
     name: string;
     team: string;
+    pos: string;
     posHeight: string;
-    rank: number; // current rank (optional if you want to show it)
+    rank: number; // current rank
     logoSrc: string;
     href?: string;
+
+    // movement (should be ↓...)
     prevRankText: string;
+
+    // optional extra info (keep for later parity with your modals/tooltips)
+    measurements?: string;
+    yearAge?: string;
+    asOf?: string;
+    statsLine?: string;
+    splitsLine?: string;
+    gamesMinsLine?: string;
 };
 
-type TopRisersProps = {
+type TopFallersProps = {
     title?: string;
-    items?: RiserProspect[];
+    items?: FallerProspect[];
     className?: string;
 };
 
 function movementClass(prevRankText: string) {
-    if (prevRankText.includes("↑")) return "text-emerald-400";
-    if (prevRankText.includes("↓")) return "text-red-400";
+    const t = prevRankText.toLowerCase();
+    if (t.includes("↔")) return "text-white/60";
+    if (t.includes("↑")) return "text-emerald-400";
+    if (t.includes("↓")) return "text-red-400";
     return "text-white/60";
 }
 
 /**
- * HARD-CODED TOP RISERS
- * Fill in team, logoSrc, posHeight, rank, and href when ready.
+ * PLACEHOLDER TOP 5 FALLERS
+ * Replace with your real hard-coded list.
  */
-const TOP_RISERS: RiserProspect[] = [
-    {
-        id: "riser-1",
-        name: "Amari Allen",
-        team: "Team",
-        posHeight: "Position - Height",
-        rank: 0,
-        logoSrc: "/placeholder-logo.png",
-        href: "#",
-        prevRankText: "(↑36)",
-    },
-    {
-        id: "riser-2",
-        name: "Morez Johnson",
-        team: "Team",
-        posHeight: "Position - Height",
-        rank: 0,
-        logoSrc: "/placeholder-logo.png",
-        href: "#",
-        prevRankText: "(↑17)",
-    },
-    {
-        id: "riser-3",
-        name: "Brayden Burries",
-        team: "Team",
-        posHeight: "Position - Height",
-        rank: 0,
-        logoSrc: "/placeholder-logo.png",
-        href: "#",
-        prevRankText: "(↑14)",
-    },
-    {
-        id: "riser-4",
-        name: "Keaton Wagner",
-        team: "Team",
-        posHeight: "Position - Height",
-        rank: 0,
-        logoSrc: "/placeholder-logo.png",
-        href: "#",
-        prevRankText: "(↑12)",
-    },
-    {
-        id: "riser-5",
-        name: "Ebuka Okorie",
-        team: "Team",
-        posHeight: "Position - Height",
-        rank: 0,
-        logoSrc: "/placeholder-logo.png",
-        href: "#",
-        prevRankText: "(↑11)",
-    },
-];
+const TOP_FALLERS: FallerProspect[] = Array.from({ length: 5 }).map((_, i) => ({
+    id: `faller-${i + 1}`,
+    rank: i + 1,
+    name: "",
+    team: "School",
+    pos: "Forward",
+    posHeight: "Forward - 6'8",
+    logoSrc: "/placeholder-logo.png",
+    href: "#",
+    prevRankText: "(↓2)",
+    measurements: "6’8”, 215",
+    yearAge: "Freshman (19)",
+    asOf: "2/4/26",
+    statsLine: "—",
+    splitsLine: "—",
+    gamesMinsLine: "—",
+}));
 
-export default function TopRisers({
-    title = "Top Risers",
-    items = TOP_RISERS,
+export default function TopFallers({
+    title = "Top Fallers",
+    items = TOP_FALLERS,
     className = "",
-}: TopRisersProps) {
+}: TopFallersProps) {
     return (
         <section
             className={[
@@ -104,13 +82,11 @@ export default function TopRisers({
             </div>
 
             <div className="mt-4 flex flex-col gap-2">
-                {items.slice(0, 5).map((p, i) => {
+                {items.slice(0, 5).map((p) => {
                     const Row = (
                         <div className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-3 py-2 hover:border-brand-orange transition">
-
-                            {/* list index instead of rank for risers */}
                             <div className="w-6 text-center text-[14px] font-black text-brand-orange">
-                                {i + 1}
+                                {p.rank}
                             </div>
 
                             <div className="relative h-8 w-8 shrink-0">
@@ -128,6 +104,7 @@ export default function TopRisers({
                                 </div>
                                 <div className="flex items-center gap-2 text-[10px] text-zinc-400 uppercase tracking-wider">
                                     <span className="truncate">{p.posHeight}</span>
+                                    <span className="text-white/20">•</span>
                                 </div>
                             </div>
 
